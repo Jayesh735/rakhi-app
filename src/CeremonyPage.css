@@ -1,0 +1,129 @@
+.ceremony-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.rotation-counter {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ff7043; /* Matches the card border color */
+    margin-bottom: 0.5rem;
+    min-height: 30px; /* Prevents layout shift when it appears/disappears */
+}
+
+.orbit-checkpoint {
+    position: absolute;
+    width: 80px;  /* This is the large, easy-to-hit invisible area */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px dashed blue; */ /* Uncomment to see the large dropzone for debugging */
+}
+
+/* This is the new visible indicator dot inside the checkpoint */
+.checkpoint-indicator {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(255, 112, 67, 0.7); /* A friendly, semi-transparent orange */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 112, 67, 0.5);
+    animation: pulse-indicator 2s infinite ease-in-out;
+}
+
+.orbit-checkpoint.top { top: -60px; left: 50%; transform: translateX(-50%); }
+.orbit-checkpoint.right { right: -60px; top: 50%; transform: translateY(-50%); }
+.orbit-checkpoint.bottom { bottom: -60px; left: 50%; transform: translateX(-50%); }
+.orbit-checkpoint.left { left: -60px; top: 50%; transform: translateY(-50%); }
+
+
+/* --- ADD THIS KEYFRAME ANIMATION --- */
+@keyframes pulse-indicator {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+}
+
+
+.ceremony-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #c62828;
+    margin-bottom: 1rem;
+}
+
+.ceremony-prompt {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    min-height: 25px;
+    transition: all 0.3s ease;
+}
+
+/* src/CeremonyPage.css */
+
+/* --- REPLACE the existing .ceremony-area rule with this one --- */
+.ceremony-area {
+    display: grid;              /* <-- Use grid instead of flex */
+    grid-template-columns: 1fr 1fr; /* <-- Create two equal columns */
+    align-items: center;        /* <-- Vertically center items in cells */
+    justify-items: center;      /* <-- Horizontally center items in cells */
+    width: 100%;
+    padding: 1rem 0; /* Add some vertical padding */
+}
+
+.avatar-zone {
+    position: relative; /* Crucial for positioning checkpoints */
+    width: 200px;
+    height: 200px;
+}
+
+.ceremony-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 7px solid #ffe0b2;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    object-fit: contain; /* <-- This change ensures the whole image fits */
+}
+
+/* --- ORBIT CHECKPOINTS (Invisible Dropzones) --- */
+.orbit-checkpoint {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    /* Uncomment border for debugging to see the dropzones */
+    /* border: 1px dashed red; */
+}
+.orbit-checkpoint.top { top: -60px; left: 50%; transform: translateX(-50%); }
+.orbit-checkpoint.right { right: -60px; top: 50%; transform: translateY(-50%); }
+.orbit-checkpoint.bottom { bottom: -60px; left: 50%; transform: translateX(-50%); }
+.orbit-checkpoint.left { left: -60px; top: 50%; transform: translateY(-50%); }
+
+
+/* --- Draggable Items --- */
+.thali-container, .rakhi-container {
+    cursor: grab;
+    transition: opacity 0.2s ease;
+    padding: 10px;
+}
+.thali-container img { width: 150px; }
+.rakhi-container img { width: 120px; }
+
+.thali-container:active, .rakhi-container:active {
+    cursor: grabbing;
+}

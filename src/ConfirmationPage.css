@@ -1,0 +1,72 @@
+/* src/ConfirmationPage.css */
+
+/* This file contains styles unique to the Confirmation Page's content.
+   Global styles are in index.css. */
+
+/* Styles for additional text lines specific to this page */
+.additional-lines {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    opacity: 0; /* IMPORTANT: Now explicitly set to 0 for JS-triggered fade-in */
+    transition: opacity 1s ease-in-out; /* This transition is for the 'fade-in' class */
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.additional-lines.fade-in {
+    opacity: 1; /* This class still makes it fully visible */
+}
+
+/* Container for button and avatar side-by-side */
+.button-avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between button and avatar */
+    margin-top: 30px;
+}
+
+/* Avatar positioned to the right of the button */
+.avatar-right-of-button {
+    opacity: 0; /* IMPORTANT: Now explicitly set to 0 for JS-triggered pop-up */
+    transform: translateX(-50px) scale(0.8); /* This is its starting transform for the pop-up animation */
+    transition: none; /* Ensure no conflicting transitions on the base state */
+}
+
+.avatar-right-of-button.pop-up-right {
+    animation: pop-up-right 0.8s ease-out forwards;
+}
+
+/* Small avatar specific styling (if different from global .my-avatar) */
+.my-avatar-small {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #ffcc80; /* Light golden border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries specific to this page's elements */
+@media (max-width: 768px) {
+    .button-avatar-container {
+        flex-direction: column; /* Stack button and avatar on small screens */
+        gap: 15px;
+    }
+    .my-avatar-small {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .my-avatar-small {
+        width: 70px;
+        height: 70px;
+    }
+}
