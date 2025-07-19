@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: '/rakhi-greeting-card/',
+// https://vitejs.dev/config/
+export default defineConfig(({ command }) => {
+  return {
+    plugins: [react()],
+    // Conditionally set the base path to '/rakhi-app/' for the build
+    base: command === 'build'
+      ? '/rakhi-app/'
+      : '/',
+  }
 })
