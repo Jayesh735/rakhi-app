@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ConfirmationPage.css';
 
+// Get the base URL from Vite's environment variables
+const BASE_URL = import.meta.env.BASE_URL;
+
 function ConfirmationPage() {
     const navigate = useNavigate();
     const [showTextLines, setShowTextLines] = useState(false);
@@ -52,7 +55,7 @@ function ConfirmationPage() {
                     Start the Ceremony!
                 </button>
                 <div className={`avatar-right-of-button ${showAvatar ? 'pop-up-right' : ''}`}>
-                    <img src="/images/msurprise.png" alt="Love Avatar" className="my-avatar-small" />
+                    <img src={`${BASE_URL}images/msurprise.png`} alt="Love Avatar" className="my-avatar-small" />
                 </div>
             </div>
         </>

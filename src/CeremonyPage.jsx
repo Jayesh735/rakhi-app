@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import OrbitCheckpoint from './OrbitCheckpoint.jsx'; // Import the new component
 import './CeremonyPage.css';
 
+// Get the base URL from Vite's environment variables
+const BASE_URL = import.meta.env.BASE_URL;
+
 const ItemTypes = {
-  THALI: 'thali',
-  RAKHI: 'rakhi',
+    THALI: 'thali',
+    RAKHI: 'rakhi',
 };
 
 // DraggableThali component
@@ -17,12 +20,12 @@ const DraggableThali = () => {
     }));
     return (
         <div ref={drag} className="thali-container" style={{ opacity: isDragging ? 0 : 1 }}>
-            <img src="/images/thali.png" alt="Pooja Thali" />
+            <img src={`${BASE_URL}images/thali.png`} alt="Pooja Thali" />
         </div>
     );
 };
 
-// Find and update the DraggableRakhi component
+// DraggableRakhi component
 const DraggableRakhi = () => {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.RAKHI,
@@ -30,7 +33,7 @@ const DraggableRakhi = () => {
     }));
     return (
         <div ref={drag} className="rakhi-container" style={{ opacity: isDragging ? 0 : 1 }}>
-            <img src="/images/rakhi.png" alt="Rakhi" />
+            <img src={`${BASE_URL}images/rakhi.png`} alt="Rakhi" />
         </div>
     );
 };
@@ -82,23 +85,23 @@ function CeremonyPage() {
         <div className="ceremony-container">
             <h1 className="ceremony-title">The Aarti</h1>
             {!isRakhiTied && !rakhiUnlocked && (
-              <h2 className="rotation-counter">Rotations: {rotations} / 3</h2>
+                <h2 className="rotation-counter">Rotations: {rotations} / 3</h2>
             )}
             <p className="ceremony-prompt">{getPromptMessage()}</p>
             <div className="ceremony-area">
                 <div className="avatar-zone" ref={drop}>
                     <img
-                        src={isRakhiTied ? "/images/avatar-final.png" : "/images/love.png"}
+                        src={isRakhiTied ? `${BASE_URL}images/avatar-final.png` : `${BASE_URL}images/love.png`}
                         alt="Brother's Avatar"
                         className="ceremony-avatar"
                     />
                     {!rakhiUnlocked && (
                         <>
-                           {/* Use the new OrbitCheckpoint component */}
-                           <OrbitCheckpoint position="top" onHover={handleOrbit} />
-                           <OrbitCheckpoint position="right" onHover={handleOrbit} />
-                           <OrbitCheckpoint position="bottom" onHover={handleOrbit} />
-                           <OrbitCheckpoint position="left" onHover={handleOrbit} />
+                            {/* Use the new OrbitCheckpoint component */}
+                            <OrbitCheckpoint position="top" onHover={handleOrbit} />
+                            <OrbitCheckpoint position="right" onHover={handleOrbit} />
+                            <OrbitCheckpoint position="bottom" onHover={handleOrbit} />
+                            <OrbitCheckpoint position="left" onHover={handleOrbit} />
                         </>
                     )}
                 </div>

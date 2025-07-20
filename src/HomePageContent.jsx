@@ -1,6 +1,8 @@
-// src/HomePageContent.jsx
 import React, { useEffect, useState } from 'react';
 import './HomePageContent.css'; // Specific CSS for HomePageContent
+
+// Get the base URL from Vite's environment variables
+const BASE_URL = import.meta.env.BASE_URL;
 
 function HomePageContent({ onSendLoveClick }) {
     const [showAvatars, setShowAvatars] = useState(false);
@@ -45,7 +47,7 @@ function HomePageContent({ onSendLoveClick }) {
 
             <p className={`message-text ${showMessage ? 'fade-in' : ''}`}>
                 To my dearest sister,May our bond always be filled with joy, laughter, and unbreakable strength.
-                Wishing you all the happiness in the world!          
+                Wishing you all the happiness in the world!
             </p>
 
             <p className={`signature ${showSignature ? 'fade-in' : ''}`}>
@@ -62,10 +64,10 @@ function HomePageContent({ onSendLoveClick }) {
             </button>
 
             <div className={`avatar-container-left ${showAvatars ? 'slide-in' : ''}`}>
-                <img src="/images/mpagal.png" alt="Rakhi Greet" className="my-avatar" />
+                <img src={`${BASE_URL}images/mpagal.png`} alt="Rakhi Greet" className="my-avatar" />
             </div>
             <div className={`avatar-container-right ${showAvatars ? 'slide-in' : ''}`}>
-                <img src="/images/greet.png" alt="Happy Rakhi" className="my-avatar mirrored" />
+                <img src={`${BASE_URL}images/greet.png`} alt="Happy Rakhi" className="my-avatar mirrored" />
             </div>
         </>
     );

@@ -1,7 +1,9 @@
-// src/PreparationPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PreparationPage.css'; // Keep your component-specific CSS import
+
+// Get the base URL from Vite's environment variables
+const BASE_URL = import.meta.env.BASE_URL;
 
 function PreparationPage() {
     const [showAvatar, setShowAvatar] = useState(false);
@@ -53,7 +55,7 @@ function PreparationPage() {
                 </button>
                 <div className={`avatar-right-of-button ${showAvatar ? 'pop-up-right' : ''}`}>
                     <img
-                        src="/images/smort.png"
+                        src={`${BASE_URL}images/smort.png`}
                         alt="Excited Avatar"
                         className="my-avatar-small"
                     />
