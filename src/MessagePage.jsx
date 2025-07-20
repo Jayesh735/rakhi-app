@@ -28,9 +28,10 @@ function MessagePage() {
             <h1 className="final-title">Happy Rakshabandhan!</h1>
             <p className="final-message">
                 Though miles may lie between us, we are never far apart,
-                for a sister and brother are always connected by the heart.
-                <br /><br />
+                for a sister and brother are always connected by the heart (and by marvel movies too).
+              
                 Wishing you a day as special as you are.
+                Haath jod rha hu dekhlo Thor..
             </p>
             <p className="final-signature">With All My Love,<br />Jayesh</p>
 

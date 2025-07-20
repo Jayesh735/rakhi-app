@@ -3,44 +3,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap');
 
 :root {
-    font-family: 'Poppins', sans-serif; /* Primary font */
+    /* ... (rest of :root is the same) ... */
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     font-weight: 400;
     color-scheme: light;
     color: #333;
-    background-color: #f7e0e0; /* A soft, warm rosy background */
+    background-color: #f7e0e0;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
     margin: 0;
-    padding: 0; /* Ensure no default padding */
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevent scrollbars when elements move/animate */
-    /* --- UPDATED: Global Background with Two Static Images in Middle of Empty Space --- */
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh; /* Use min-height to allow stretching */
+    overflow-y: auto;  /* <-- CHANGE: Allow vertical scrolling */
+    padding: 2rem 0;   /* <-- ADD: Add padding for when content is tall */
+    box-sizing: border-box;
+    /* ... (rest of body styles are the same) ... */
     background-image:
-        url('/images/happy.png'),    /* Left side image */
-        url('/images/mhon.png'); /* Right side image */
-    background-repeat: no-repeat, no-repeat; /* No repetition */
-    background-size: 250px, 280px; /* Increased size for better visibility */
-    /* Positions: Using calc() to place them in the empty space. */
-    /* The card has max-width: 700px. We'll position relative to the 50% mark (screen center) */
-    /* and offset by half the card width plus a margin to put it in the empty area. */
-    /* For left: (50% - (700px / 2) - image_width / 2) */
-    /* For right: (50% + (700px / 2) - image_width / 2) */
-    /* A simpler approach for "middle of empty space" that is responsive: */
-    /* Use percentages that are not too close to 0% or 100% */
-    background-position: 10% center, 90% center; /* 10% from left, 10% from right, vertically centered */
-    background-color: #fce4ec; /* Base background color as fallback/base */
-    background-attachment: fixed; /* Keeps background fixed when scrolling */
-    /* --- END UPDATED --- */
+        url('/images/happy.png'),
+        url('/images/mhon.png');
+    background-repeat: no-repeat, no-repeat;
+    background-size: 250px, 280px;
+    background-position: 10% center, 90% center;
+    background-color: #fce4ec;
+    background-attachment: fixed;
 }
 
 #root {
@@ -65,37 +59,36 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Card Container */
 .rakhi-card {
-    background-color: #fff; /* White background for the card */
+    background-color: #fff;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-    padding: 40px; /* Padding for content inside this main card */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
     text-align: center;
-    max-width: 700px; /* INCREASED: Max width for the card */
-    min-height: 600px; /* NEW: Ensure a minimum height for the card */
-    width: 90%; /* Responsive width */
-    position: relative; /* ESSENTIAL: For positioning the absolute avatars correctly */
-    overflow: hidden; /* CRUCIAL: Hides elements when they're initially outside the card */
-    animation: scaleIn 0.8s ease-out; /* Card entrance animation */
-    border: 1px solid rgba(0, 0, 0, 0.05); /* Very light grey border for definition */
-    box-sizing: border-box; /* Ensure consistent box-sizing */
+    max-width: 700px;
+    /* min-height: 600px; <-- REMOVE: Allow card to resize */
+    width: 90%;
+    position: relative;
+    /* overflow: hidden; <-- REMOVE: Allow content to be visible */
+    animation: scaleIn 0.8s ease-out;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
 }
 
 /* Card Decorative Border - This creates the inner orange border effect */
 .card-border {
-    border: 5px solid #ff7043; /* Orange-red border color */
-    border-radius: 15px; /* Slightly smaller radius than main card */
-    position: relative; /* Needed for absolutely positioned children */
-    overflow: hidden; /* Recommended here too, to contain inner elements and ensure no spillover */
-    margin: 0; /* Reset default margin */
-    padding: 20px; /* ADDED padding inside this inner border for content separation */
-    box-sizing: border-box; /* Ensure consistent box-sizing */
-    min-height: 520px; /* IMPORTANT: Increased minimum height, related to rakhi-card's min-height */
-    display: flex; /* IMPORTANT: Helps manage content during transitions */
-    flex-direction: column; /* IMPORTANT: Stack content vertically */
-    justify-content: center; /* IMPORTANT: Center content vertically within min-height */
-    align-items: center; /* IMPORTANT: Center content horizontally within min-height */
+    border: 5px solid #ff7043;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    /* min-height: 520px; <-- REMOVE: Allow border to resize */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
 /* Rest of index.css content remains the same... */
 /* Greetings and Text Styles - General */
 .greeting-small {

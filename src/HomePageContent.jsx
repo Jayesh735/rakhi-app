@@ -43,17 +43,17 @@ function HomePageContent({ onSendLoveClick }) {
     return (
         <>
             <h3 className="greeting-small">Happy</h3>
-            <h1 className="greeting-main">Rakshabandhan Mansi</h1>
+            <h1 className="greeting-main">Rakshabandhan Mansi 🐒</h1>
 
             <p className={`message-text ${showMessage ? 'fade-in' : ''}`}>
-                To my dearest sister,May our bond always be filled with joy, laughter, and unbreakable strength.
+                To my dearest sister, May our bond always be filled with joy, laughter, and unbreakable strength.
                 Wishing you all the happiness in the world!
             </p>
 
             <p className={`signature ${showSignature ? 'fade-in' : ''}`}>
                 With lots of love,
                 <br />
-                Jayesh
+                Jayesh🐒
             </p>
 
             <button

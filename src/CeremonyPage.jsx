@@ -84,7 +84,7 @@ function CeremonyPage() {
         if (isRakhiTied) return "Rakhi tied! Happy Rakshabandhan!";
         if (rakhiUnlocked) return "The Rakhi is unlocked! Drag it to your brother's wrist.";
         if (rotations > 0 && rotations < 3) return `Rotation ${rotations} of 3 complete! Keep going!`;
-        return "Perform the Aarti by orbiting the thali around your brother 3 times.";
+        return "Perform the Aarti by orbiting the thali around me 3 times.";
     };
 
     return (

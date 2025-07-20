@@ -46,7 +46,7 @@ function PreparationPage() {
 
             <div className={`additional-lines ${showTextLines ? 'fade-in' : ''}`}>
                 <p>Hold on tight! Something special is being prepared just for you.</p>
-                <p>This might take a moment, but it will be worth it!</p>
+                <p>This might take a moment, but it will be worth it! btw dont forget that u are a smol kiddo •̀⩊•́</p>
             </div>
 
             <div className="button-avatar-container">
