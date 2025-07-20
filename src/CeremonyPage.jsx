@@ -1,10 +1,9 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { useNavigate } from 'react-router-dom';
-import OrbitCheckpoint from './OrbitCheckpoint.jsx'; // Import the new component
+import OrbitCheckpoint from './OrbitCheckpoint.jsx';
 import './CeremonyPage.css';
 
-// Get the base URL from Vite's environment variables
 const BASE_URL = import.meta.env.BASE_URL;
 
 const ItemTypes = {
@@ -12,7 +11,6 @@ const ItemTypes = {
     RAKHI: 'rakhi',
 };
 
-// DraggableThali component
 const DraggableThali = () => {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.THALI,
@@ -25,7 +23,6 @@ const DraggableThali = () => {
     );
 };
 
-// DraggableRakhi component
 const DraggableRakhi = () => {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.RAKHI,
@@ -38,7 +35,6 @@ const DraggableRakhi = () => {
     );
 };
 
-// Main CeremonyPage component
 function CeremonyPage() {
     const navigate = useNavigate();
     const [rotations, setRotations] = useState(0);
@@ -47,22 +43,32 @@ function CeremonyPage() {
     const orbitOrder = useRef([]);
     const expectedOrder = ['top', 'right', 'bottom', 'left'];
 
+    // --- UPDATED ORBIT LOGIC ---
     const handleOrbit = useCallback((checkpoint) => {
-        const lastCheckpoint = orbitOrder.current[orbitOrder.current.length - 1];
-        if (checkpoint !== lastCheckpoint) {
+        // Find what the next correct checkpoint in the sequence should be
+        const nextExpectedCheckpoint = expectedOrder[orbitOrder.current.length];
+
+        // If the user is hovering over the correct next checkpoint in the sequence...
+        if (checkpoint === nextExpectedCheckpoint) {
+            // ...add it to our sequence tracker. This prevents out-of-order tracking.
             orbitOrder.current.push(checkpoint);
         }
+
+        // When the sequence tracker is full (meaning a full, correct orbit is complete)...
         if (orbitOrder.current.length === expectedOrder.length) {
-            if (JSON.stringify(orbitOrder.current) === JSON.stringify(expectedOrder)) {
-                setRotations(prev => {
-                    const newRotations = prev + 1;
-                    if (newRotations >= 3) setRakhiUnlocked(true);
-                    return newRotations;
-                });
-            }
+            // ...increment the rotation count.
+            setRotations(prev => {
+                const newRotations = prev + 1;
+                if (newRotations >= 3) {
+                    setRakhiUnlocked(true);
+                }
+                return newRotations;
+            });
+            // ...and reset the sequence tracker for the next orbit.
             orbitOrder.current = [];
         }
-    }, []);
+    }, []); // The empty dependency array is correct here.
+    // --- END OF UPDATED LOGIC ---
 
     const [, drop] = useDrop(() => ({
         accept: ItemTypes.RAKHI,
@@ -97,7 +103,6 @@ function CeremonyPage() {
                     />
                     {!rakhiUnlocked && (
                         <>
-                            {/* Use the new OrbitCheckpoint component */}
                             <OrbitCheckpoint position="top" onHover={handleOrbit} />
                             <OrbitCheckpoint position="right" onHover={handleOrbit} />
                             <OrbitCheckpoint position="bottom" onHover={handleOrbit} />
